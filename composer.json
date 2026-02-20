@@ -1,6 +1,8 @@
 {
     "name": "paullebedev/kafka",
     "type": "library",
+    "license": "proprietary",
+    "description": "Php Kafka library",
     "autoload": {
         "psr-4": {
             "Paullebedev\\Kafka\\": "src/"

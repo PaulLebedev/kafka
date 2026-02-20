@@ -4,5 +4,5 @@ namespace Src\Interfaces;
 
 interface Handler {
 
-    public function handle($message): void;
+    public function handle(Message $message): void;
 }
