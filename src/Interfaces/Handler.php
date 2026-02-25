@@ -2,7 +2,8 @@
 
 namespace PaulLebedev\Kafka\Interfaces;
 
-interface Handler {
-
+use RdKafka\Message;
+interface Handler
+{
     public function handle(Message $message): void;
 }

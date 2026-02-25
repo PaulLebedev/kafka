@@ -6,17 +6,20 @@ use PaulLebedev\Kafka\Interfaces\Handler;
 use RdKafka\Conf;
 use RdKafka\KafkaConsumer;
 
-class Consumer {
+class Consumer
+{
 
-    public function __construct(private Handler $handler, private string $topic) {}
+    public function __construct(private Handler $handler, private Conf $conf)
+    {
+    }
 
-    public function consume(): void {
-        $conf = new Conf();
+    public function consume(): void
+    {
 
-        $consumer = new KafkaConsumer($conf);
-        
+        $consumer = new KafkaConsumer($this->conf);
+
         // Subscribe to topic 
-        $consumer->subscribe([$this->topic]);
+        $consumer->subscribe();
 
         $is_completed = false;
         while (!$is_completed) {
