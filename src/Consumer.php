@@ -1,10 +1,10 @@
 <?php
 
-namespace Src;
+namespace PaulLebedev\Kafka;
 
+use PaulLebedev\Kafka\Interfaces\Handler;
 use RdKafka\Conf;
 use RdKafka\KafkaConsumer;
-use Src\Interfaces\Handler;
 
 class Consumer {
 
@@ -12,27 +12,6 @@ class Consumer {
 
     public function consume(): void {
         $conf = new Conf();
-
-        // Set the group id. This is required when storing offsets on the broker
-        // Configure the group.id. All consumer with the same group.id will consume
-        // different partitions.
-        $conf->set('group.id', env('KAFKA_CONSUMER_GROUP_ID'));
-        $conf->set('sasl.mechanisms', env('KAFKA_MECHANISMS'));
-        $conf->set('sasl.username', env('KAFKA_USERNAME'));
-        $conf->set('sasl.password', env('KAFKA_PASSWORD'));
-        $conf->set('security.protocol', env('KAFKA_SECURITY_PROTOCOL'));
-        $conf->set('ssl.ca.location', env('KAFKA_SSL_CA_LOCATION'));
-
-        // Initial list of Kafka brokers
-        $conf->set('metadata.broker.list', env('KAFKA_BROKERS'));
-
-        // Set where to start consuming messages when there is no initial offset in
-        // offset store or the desired offset is out of range.
-        // 'earliest': start from the beginning
-        $conf->set('auto.offset.reset', 'earliest');
-
-        // Emit EOF event when reaching the end of a partition
-        $conf->set('enable.partition.eof', 'true');
 
         $consumer = new KafkaConsumer($conf);
         

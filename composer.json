@@ -5,7 +5,7 @@
     "description": "Php Kafka library",
     "autoload": {
         "psr-4": {
-            "Paullebedev\\Kafka\\": "src/"
+            "PaulLebedev\\Kafka\\": "src/"
         }
     },
     "authors": [

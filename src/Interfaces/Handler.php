@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Interfaces;
+namespace PaulLebedev\Kafka\Interfaces;
 
 interface Handler {
 
