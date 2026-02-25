@@ -9,7 +9,7 @@ use RdKafka\KafkaConsumer;
 class Consumer
 {
 
-    public function __construct(private Handler $handler, private Conf $conf)
+    public function __construct(private Handler $handler, private Conf $conf, string $topic_name)
     {
     }
 
@@ -19,7 +19,7 @@ class Consumer
         $consumer = new KafkaConsumer($this->conf);
 
         // Subscribe to topic 
-        $consumer->subscribe();
+        $consumer->subscribe([$topic_name]);
 
         $is_completed = false;
         while (!$is_completed) {
